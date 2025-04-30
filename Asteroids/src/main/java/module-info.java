@@ -1,10 +1,7 @@
-import dk.sdu.common.service.*;
-import dk.sdu.asteroids.AsteroidProcessor;
-import dk.sdu.asteroids.AsteroidPlugin;
-
 module Asteroid {
     requires Common;
     requires CommonAsteroids;
-    provides IGamePlugin with AsteroidPlugin;
-    provides IEntity with AsteroidProcessor;
+
+    provides dk.sdu.common.service.IGamePlugin with dk.sdu.asteroids.AsteroidPlugin;
+    provides dk.sdu.common.service.IEntityProcessor with dk.sdu.asteroids.AsteroidProcessor;
 }

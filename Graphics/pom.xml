@@ -6,16 +6,10 @@
         <artifactId>asteroids.jpms</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-
-    <artifactId>Core</artifactId>
-    <name>Core</name>
+    <artifactId>Graphics</artifactId>
+    <name>Archetype - Graphics</name>
     <url>http://maven.apache.org</url>
-
     <dependencies>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-        </dependency>
         <dependency>
             <groupId>dk.sdu</groupId>
             <artifactId>Common</artifactId>
@@ -28,8 +22,23 @@
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>dk.sdu</groupId>
+            <artifactId>CommonPlayer</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>dk.sdu</groupId>
+            <artifactId>CommonAsteroids</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
