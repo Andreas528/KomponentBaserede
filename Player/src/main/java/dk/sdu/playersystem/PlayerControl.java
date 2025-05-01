@@ -4,8 +4,9 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
-import dk.sdu.common.data.GameKeys;
+import dk.sdu.common.data.GameData;
 import dk.sdu.common.player.Player;
+import dk.sdu.common.data.EGameInputs;
 
 
 public class PlayerControl implements IEntityProcessor {
@@ -13,15 +14,15 @@ public class PlayerControl implements IEntityProcessor {
     @Override
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
-            if (gameData.getKeys().isDown(GameKeys.LEFT)) {
+            if (gameData.getInputs().isDown(EGameInputs.Left)) {
                 player.setRotation(player.getRotation() - 2);
             }
 
-            if (gameData.getKeys().isDown(GameKeys.RIGHT)) {
-                player.setRotation(player.getRotation() + 2);
+            if (gameData.getInputs().isDown(EGameInputs.Right)) {
+                player.setRotation(player.getRotation() - 2);
             }
 
-            if (gameData.getKeys().isDown(GameKeys.UP)) {
+            if (gameData.getInputs().isDown(EGameInputs.Up)) {
                 double changeX = Math.cos(Math.toRadians(player.getRotation()));
                 double changeY = Math.sin(Math.toRadians(player.getRotation()));
                 player.setX(player.getX() + changeX);

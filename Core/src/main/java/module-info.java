@@ -1,7 +1,5 @@
 module Core {
     requires javafx.controls;
-    requires javafx.graphics;
-
     requires Common;
     requires CommonGraphics;
 
