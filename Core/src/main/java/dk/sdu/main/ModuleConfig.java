@@ -1,5 +1,6 @@
 package dk.sdu.main;
 
+import dk.sdu.common.input.IInput;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IPostEntity;
 import dk.sdu.common.service.IGamePlugin;
@@ -24,6 +25,10 @@ public class ModuleConfig {
 
     public static Collection<IGraphics> getGraphicComponents() {
         return ServiceLoader.load(IGraphics.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    }
+
+    public static Collection<IInput> getIInputServices() {
+        return ServiceLoader.load(IInput.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
 }

@@ -17,6 +17,8 @@
         <module>Player</module>
         <module>Graphics</module>
         <module>CommonGraphics</module>
+        <module>CommonInput</module>
+        <module>Input</module>
     </modules>
 
     <dependencyManagement>

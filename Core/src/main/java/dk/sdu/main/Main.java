@@ -7,6 +7,7 @@ import dk.sdu.common.graphics.IGraphics;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.input.IInput;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -37,7 +38,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
+        scene.setFill(Color.BLACK);
 
+        for (IInput input : ModuleConfig.getIInputServices()) {
+            scene.addEventHandler(input.getInputEvent(), input.getInputHandler(gameData));
+        }
 
         // Game Plugin (ServiceLoader)
         for (IGamePlugin iGamePlugin : ModuleConfig.getPluginServices()) {
@@ -52,10 +58,6 @@ public class Main extends Application {
         //Scene, background and text
         Text text = new Text(10, 20,"Destroyed asteroids: 0");
         text.setFill(Color.GREEN);
-
-        Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        scene.setFill(Color.BLACK);
-        gameWindow.getChildren().add(text);
 
         render();
         primaryStage.setTitle("Asteroids");
