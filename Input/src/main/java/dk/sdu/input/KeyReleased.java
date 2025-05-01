@@ -11,7 +11,7 @@ import dk.sdu.common.data.EGameInputs;
 public class KeyReleased implements IInput {
     @Override
     public EventType<? extends InputEvent> getInputEvent() {
-        return KeyEvent.KEY_PRESSED;
+        return KeyEvent.KEY_RELEASED;
     }
 
     @Override
