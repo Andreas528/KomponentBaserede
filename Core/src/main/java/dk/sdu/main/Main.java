@@ -38,6 +38,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
         // Game Plugin (ServiceLoader)
         for (IGamePlugin iGamePlugin : ModuleConfig.getPluginServices()) {
             iGamePlugin.start(gameData, world);

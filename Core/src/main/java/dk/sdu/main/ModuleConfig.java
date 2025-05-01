@@ -25,4 +25,5 @@ public class ModuleConfig {
     public static Collection<IGraphics> getGraphicComponents() {
         return ServiceLoader.load(IGraphics.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
+
 }
