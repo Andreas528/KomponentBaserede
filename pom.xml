@@ -17,6 +17,7 @@
         <module>Player</module>
         <module>CommonInput</module>
         <module>Input</module>
+        <module>Collision</module>
     </modules>
 
     <dependencyManagement>
