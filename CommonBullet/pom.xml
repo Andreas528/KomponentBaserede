@@ -6,25 +6,14 @@
         <artifactId>asteroids.jpms</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>Player</artifactId>
-    <name>Player</name>
+    <artifactId>CommonBullet</artifactId>
+    <name>CommonBullet</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>dk.sdu</groupId>
             <artifactId>Common</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu</groupId>
-            <artifactId>CommonPlayer</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu</groupId>
-            <artifactId>CommonBullet</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

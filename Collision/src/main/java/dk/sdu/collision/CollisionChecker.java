@@ -13,13 +13,14 @@ public class CollisionChecker implements IPostEntity {
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
 
-                // if the two entities are identical, skip the iteration
+                // If the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID())) {
                     continue;
                 }
 
+                // Checks if the collision was between 2 Asteroids
                 if (entity1 instanceof Asteroid && entity2 instanceof Asteroid) {
-                    continue; // Don't remove either — they just bounce/ignore
+                    continue;
                 }
 
                 // CollisionDetection

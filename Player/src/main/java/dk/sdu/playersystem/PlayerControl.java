@@ -7,6 +7,12 @@ import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.player.Player;
 import dk.sdu.common.data.EGameInputs;
+import dk.sdu.common.bullet.BulletSPI;
+
+import java.util.Collection;
+import java.util.ServiceLoader;
+
+import static java.util.stream.Collectors.toList;
 
 
 public class PlayerControl implements IEntityProcessor {
@@ -29,6 +35,11 @@ public class PlayerControl implements IEntityProcessor {
                 player.setY(player.getY() + changeY);
             }
 
+            if (gameData.getInputs().isDown(EGameInputs.Space)) {
+                getBulletSPIs().stream().findFirst().ifPresent(
+                        spi -> {world.addEntity(spi.createBullet(player, gameData));}
+                );
+            }
 
             if (player.getX() < 0) {
                 player.setX(1);
@@ -47,4 +58,9 @@ public class PlayerControl implements IEntityProcessor {
             }
         }
     }
+    private Collection<? extends BulletSPI> getBulletSPIs() {
+        return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    }
+
 }
+

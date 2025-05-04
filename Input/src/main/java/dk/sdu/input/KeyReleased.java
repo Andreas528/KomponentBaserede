@@ -24,6 +24,7 @@ public class KeyReleased implements IInput {
                         case UP, W -> gameData.getInputs().setInput(EGameInputs.Up, false);
                         case LEFT, A -> gameData.getInputs().setInput(EGameInputs.Left, false);
                         case RIGHT, D -> gameData.getInputs().setInput(EGameInputs.Right, false);
+                        case SPACE -> gameData.getInputs().setInput(EGameInputs.Space, false);
                     }
                 }
             }

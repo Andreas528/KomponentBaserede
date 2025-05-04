@@ -18,6 +18,8 @@
         <module>CommonInput</module>
         <module>Input</module>
         <module>Collision</module>
+        <module>Bullet</module>
+        <module>CommonBullet</module>
     </modules>
 
     <dependencyManagement>

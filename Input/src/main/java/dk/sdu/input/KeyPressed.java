@@ -24,6 +24,7 @@ public class KeyPressed implements IInput {
                         case UP, W -> gameData.getInputs().setInput(EGameInputs.Up, true);
                         case LEFT, A -> gameData.getInputs().setInput(EGameInputs.Left, true);
                         case RIGHT, D -> gameData.getInputs().setInput(EGameInputs.Right, true);
+                        case SPACE -> gameData.getInputs().setInput(EGameInputs.Space, true);
                     }
                 }
             }
