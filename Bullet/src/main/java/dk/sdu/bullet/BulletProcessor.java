@@ -7,17 +7,19 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
 
+
 public class BulletProcessor implements IEntityProcessor, BulletSPI {
 
     @Override
-    public Entity createBullet(Entity shootingPlayer, GameData gameData) {
+    public Entity createBullet(Entity firing, GameData gameData) {
+
         Entity bullet = new Bullet();
         bullet.setPolygonCoordinates(1, -1, 1, 1, -1, 1, -1, -1);
-        double changeX = Math.cos(Math.toRadians(shootingPlayer.getRotation()));
-        double changeY = Math.sin(Math.toRadians(shootingPlayer.getRotation()));
-        bullet.setX(shootingPlayer.getX() + changeX * 10);
-        bullet.setY(shootingPlayer.getY() + changeY * 10);
-        bullet.setRotation(shootingPlayer.getRotation());
+        double changeX = Math.cos(Math.toRadians(firing.getRotation()));
+        double changeY = Math.sin(Math.toRadians(firing.getRotation()));
+        bullet.setX(firing.getX() + changeX * 10);
+        bullet.setY(firing.getY() + changeY * 10);
+        bullet.setRotation(firing.getRotation());
         bullet.setRadius(1);
         bullet.setColor(255, 0, 0);
         return bullet;
