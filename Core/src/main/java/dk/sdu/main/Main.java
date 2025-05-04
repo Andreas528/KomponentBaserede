@@ -7,6 +7,7 @@ import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.common.service.IPostEntity;
 import dk.sdu.common.input.IInput;
+import dk.sdu.common.service.ScoreSPI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,6 +28,8 @@ public class Main extends Application {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
+    private List<ScoreSPI> scoreServices;
+
 
 
     public static void main(String[] args) {
@@ -34,8 +38,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Scene and Score Text
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        scene.setFill(Color.WHITE);
+        scene.setFill(Color.BLACK);
+
+        scoreServices = new ArrayList<>(ModuleConfig.getScoreServices());
+        for (ScoreSPI score : scoreServices) {
+            gameWindow.getChildren().add(score.getScoreText());
+        }
 
         // Input
         for (IInput input : ModuleConfig.getIInputServices()) {
@@ -46,10 +56,6 @@ public class Main extends Application {
         for (IGamePlugin iGamePlugin : ModuleConfig.getPluginServices()) {
             iGamePlugin.start(gameData, world);
         }
-
-        //Scene, background and text
-        Text text = new Text(10, 20,"Destroyed asteroids: 0");
-        text.setFill(Color.GREEN);
 
         render();
         primaryStage.setTitle("Asteroids");
@@ -99,7 +105,11 @@ public class Main extends Application {
             polygon.setTranslateX(entity.getX());
             polygon.setTranslateY(entity.getY());
             polygon.setRotate(entity.getRotation());
+
+            for (ScoreSPI score : scoreServices) {
+                score.update(gameData);
+            }
+
         }
     }
-
 }

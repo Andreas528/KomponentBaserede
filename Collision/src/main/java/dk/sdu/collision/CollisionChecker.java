@@ -25,6 +25,9 @@ public class CollisionChecker implements IPostEntity {
 
                 // CollisionDetection
                 if (this.collides(entity1, entity2)) {
+                    if (entity1 instanceof Asteroid || entity2 instanceof Asteroid) {
+                        gameData.addScore();
+                    }
                     world.removeEntity(entity1);
                     world.removeEntity(entity2);
                 }

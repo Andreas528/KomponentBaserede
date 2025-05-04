@@ -4,7 +4,7 @@ import dk.sdu.common.input.IInput;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IPostEntity;
 import dk.sdu.common.service.IGamePlugin;
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.service.ScoreSPI;
 
 
 import java.util.Collection;
@@ -27,4 +27,9 @@ public class ModuleConfig {
     public static Collection<IInput> getIInputServices() {
         return ServiceLoader.load(IInput.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
+
+    public static Collection<ScoreSPI> getScoreServices() {
+        return ServiceLoader.load(ScoreSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    }
+
 }

@@ -3,7 +3,16 @@ public class GameData {
 
     private int displayWidth  = 800 ;
     private int displayHeight = 800;
+    private int score = 0;
     private final GameInputs inputs = new GameInputs();
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore () {
+        score++;
+    }
 
 
     public synchronized GameInputs getInputs() {
