@@ -20,6 +20,8 @@
         <module>Collision</module>
         <module>Bullet</module>
         <module>CommonBullet</module>
+        <module>CommonEnemy</module>
+        <module>Enemy</module>
     </modules>
 
     <dependencyManagement>
