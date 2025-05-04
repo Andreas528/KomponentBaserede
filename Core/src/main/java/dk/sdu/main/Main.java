@@ -3,7 +3,6 @@ package dk.sdu.main;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.common.graphics.IGraphics;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.common.service.IPostEntity;
@@ -20,16 +19,13 @@ import javafx.stage.Stage;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static java.util.stream.Collectors.toList;
-
 
 public class Main extends Application {
 
     private final Pane gameWindow = new Pane();
     private final GameData gameData = new GameData();
     private final World world = new World();
-    private List<IGraphics> graphicsServices;
-
+    private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
 
 
     public static void main(String[] args) {
@@ -39,8 +35,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        scene.setFill(Color.BLACK);
+        scene.setFill(Color.WHITE);
 
+        // Input
         for (IInput input : ModuleConfig.getIInputServices()) {
             scene.addEventHandler(input.getInputEvent(), input.getInputHandler(gameData));
         }
@@ -48,11 +45,6 @@ public class Main extends Application {
         // Game Plugin (ServiceLoader)
         for (IGamePlugin iGamePlugin : ModuleConfig.getPluginServices()) {
             iGamePlugin.start(gameData, world);
-        }
-
-        graphicsServices = new ArrayList<>(ModuleConfig.getGraphicComponents());
-        for (IGraphics graphics : graphicsServices) {
-            gameWindow.getChildren().add(graphics.createComponent(gameData, world));
         }
 
         //Scene, background and text
@@ -69,21 +61,14 @@ public class Main extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
+                draw();
                 updateGameLogic();
-                updateGraphics();
             }
 
         }.start();
     }
 
-    //Draws the entities
-    private void updateGraphics() {
-        for (IGraphics graphics : graphicsServices) {
-            graphics.updateComponent(gameData, world);
-        }
-    }
-
-    //Runs all the processors, which makes Asteroids move
+    // Updates service loaders (for movement)
     private void updateGameLogic() {
         for (IEntityProcessor proc : ModuleConfig.getIEntityServices()) {
             proc.process(gameData, world);
@@ -92,4 +77,29 @@ public class Main extends Application {
             post.process(gameData, world);
         }
     }
+
+    // Draws entities
+    private void draw() {
+        for (Entity polygonEntity : polygons.keySet()) {
+            if (!world.getEntities().contains(polygonEntity)) {
+                Polygon removedPolygon = polygons.get(polygonEntity);
+                polygons.remove(polygonEntity);
+                gameWindow.getChildren().remove(removedPolygon);
+            }
+        }
+        for (Entity entity : world.getEntities()) {
+            Polygon polygon = polygons.get(entity);
+            if (polygon == null) {
+                polygon = new Polygon(entity.getPolygonCoordinates());
+                int[] col = entity.getColor();
+                polygon.setFill(Color.rgb(col[0], col[1], col[2]));
+                polygons.put(entity, polygon);
+                gameWindow.getChildren().add(polygon);
+            }
+            polygon.setTranslateX(entity.getX());
+            polygon.setTranslateY(entity.getY());
+            polygon.setRotate(entity.getRotation());
+        }
+    }
+
 }

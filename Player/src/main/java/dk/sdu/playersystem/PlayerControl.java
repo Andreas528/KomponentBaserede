@@ -15,11 +15,11 @@ public class PlayerControl implements IEntityProcessor {
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
             if (gameData.getInputs().isDown(EGameInputs.Left)) {
-                player.setRotation(player.getRotation() - 5);
+                player.setRotation(player.getRotation() - 2);
             }
 
             if (gameData.getInputs().isDown(EGameInputs.Right)) {
-                player.setRotation(player.getRotation() + 5);
+                player.setRotation(player.getRotation() + 2);
             }
 
             if (gameData.getInputs().isDown(EGameInputs.Up)) {
