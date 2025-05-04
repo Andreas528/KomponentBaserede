@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
-
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,9 +27,7 @@ public class Main extends Application {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
-    private List<ScoreSPI> scoreServices;
-
-
+    private ScoreSPI scoreServices;
 
     public static void main(String[] args) {
         launch(Main.class);
@@ -41,10 +39,10 @@ public class Main extends Application {
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
         scene.setFill(Color.BLACK);
 
-        scoreServices = new ArrayList<>(ModuleConfig.getScoreServices());
-        for (ScoreSPI score : scoreServices) {
-            gameWindow.getChildren().add(score.getScoreText());
-        }
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        scoreServices = context.getBean(ScoreSPI.class);
+        gameWindow.getChildren().add(scoreServices.getScoreText());
+
 
         // Input
         for (IInput input : ModuleConfig.getIInputServices()) {
@@ -81,6 +79,7 @@ public class Main extends Application {
         for (IPostEntity post : ModuleConfig.getPostServices()) {
             post.process(gameData, world);
         }
+        scoreServices.update(gameData);
     }
 
     // Draws entities
@@ -104,10 +103,6 @@ public class Main extends Application {
             polygon.setTranslateX(entity.getX());
             polygon.setTranslateY(entity.getY());
             polygon.setRotate(entity.getRotation());
-
-            for (ScoreSPI score : scoreServices) {
-                score.update(gameData);
-            }
 
         }
     }

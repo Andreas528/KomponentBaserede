@@ -3,7 +3,9 @@ package dk.sdu.score;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.service.ScoreSPI;
 import javafx.scene.text.Text;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Score implements ScoreSPI {
 
     private final Text scoreText;

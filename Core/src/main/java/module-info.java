@@ -7,6 +7,7 @@ module Core {
     requires Common;
     requires CommonInput;
     requires CommonBullet;
+    requires spring.context;
 
     uses dk.sdu.common.service.IGamePlugin;
     uses dk.sdu.common.service.IPostEntity;
