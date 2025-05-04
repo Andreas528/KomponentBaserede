@@ -17,9 +17,15 @@ import static java.util.stream.Collectors.toList;
 
 public class PlayerControl implements IEntityProcessor {
 
+    // time since last shot
+    private static long lastShotTime = 0;
+    // milliseconds
+    private static final long COOLDOWN = 250;
+
     @Override
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
+            //Input keys for player
             if (gameData.getInputs().isDown(EGameInputs.Left)) {
                 player.setRotation(player.getRotation() - 2);
             }
@@ -35,27 +41,27 @@ public class PlayerControl implements IEntityProcessor {
                 player.setY(player.getY() + changeY);
             }
 
+
+            //Checks if player is holding space
             if (gameData.getInputs().isDown(EGameInputs.Space)) {
-                getBulletSPIs().stream().findFirst().ifPresent(
-                        spi -> {world.addEntity(spi.createBullet(player, gameData));}
-                );
+                long currentTime = System.currentTimeMillis();
+
+                //Check time since last shot
+                if (currentTime - lastShotTime >= COOLDOWN) {
+                    //Calls BulletSPI and creates bullet
+                    getBulletSPIs().stream().findFirst().ifPresent(spi -> {
+                        Entity bullet = spi.createBullet(player, gameData);
+                        if (bullet != null) {
+                            world.addEntity(bullet);
+                        }
+                    });
+                    //Updates time for last shot
+                    lastShotTime = currentTime;
+                }
             }
 
-            if (player.getX() < 0) {
-                player.setX(1);
-            }
-
-            if (player.getX() > gameData.getDisplayWidth()) {
-                player.setX(gameData.getDisplayWidth()-1);
-            }
-
-            if (player.getY() < 0) {
-                player.setY(1);
-            }
-
-            if (player.getY() > gameData.getDisplayHeight()) {
-                player.setY(gameData.getDisplayHeight()-1);
-            }
+            player.setX(Math.min(Math.max(player.getX(), 1), gameData.getDisplayWidth() - 1));
+            player.setY(Math.min(Math.max(player.getY(), 1), gameData.getDisplayHeight() - 1));
         }
     }
     private Collection<? extends BulletSPI> getBulletSPIs() {
