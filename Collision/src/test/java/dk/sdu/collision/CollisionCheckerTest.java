@@ -27,7 +27,7 @@ class CollisionCheckerTest {
     }
 
     @org.junit.jupiter.api.Test
-    void process() {
+    void checkCollision() {
         Asteroid asteroid = new Asteroid();
         asteroid.setX(100);
         asteroid.setY(100);
