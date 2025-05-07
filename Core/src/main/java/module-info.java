@@ -8,6 +8,10 @@ module Core {
     requires CommonInput;
     requires CommonBullet;
     requires spring.context;
+    requires spring.core;
+    requires spring.beans;
+
+    opens dk.sdu.main to javafx.graphics, spring.core;
 
     uses dk.sdu.common.service.IGamePlugin;
     uses dk.sdu.common.service.IPostEntity;
