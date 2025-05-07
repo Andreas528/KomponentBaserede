@@ -7,6 +7,7 @@ import dk.sdu.commonasteroids.Asteroid;
 import dk.sdu.common.service.IPostEntity;
 
 
+
 public class CollisionChecker implements IPostEntity {
     @Override
     public void process(GameData gameData, World world) {
