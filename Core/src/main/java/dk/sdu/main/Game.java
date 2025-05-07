@@ -47,7 +47,9 @@ public class Game {
         // Scene and Score Text
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
         scene.setFill(Color.BLACK);
-        gameWindow.getChildren().add(scoreSPI.getFirst().getScoreText());
+        if (!scoreSPI.isEmpty()) {
+            gameWindow.getChildren().add(scoreSPI.getFirst().getScoreText());
+        }
 
         // Input
         for (IInput input : inputs) {
@@ -83,7 +85,9 @@ public class Game {
         for (IPostEntity post : postEntities) {
             post.process(gameData, world);
         }
-        scoreSPI.getFirst().update(gameData);
+        if (!scoreSPI.isEmpty()) {
+            scoreSPI.getFirst().update(gameData);
+        }
     }
 
     // Draws entities
