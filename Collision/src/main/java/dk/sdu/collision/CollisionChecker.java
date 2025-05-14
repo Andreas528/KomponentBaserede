@@ -5,9 +5,13 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.commonasteroids.Asteroid;
 import dk.sdu.common.service.IPostEntity;
+import dk.sdu.scoreclient.ScoreClient;
 
 
 public class CollisionChecker implements IPostEntity {
+
+    private final ScoreClient scoreClient = new ScoreClient();
+
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity1 : world.getEntities()) {
@@ -23,10 +27,10 @@ public class CollisionChecker implements IPostEntity {
                     continue;
                 }
 
-                // CollisionDetection
+                // CollisionDetection with Spring MicroService.
                 if (this.collides(entity1, entity2)) {
                     if (entity1 instanceof Asteroid || entity2 instanceof Asteroid) {
-                        gameData.addScore();
+                        scoreClient.addScore(1);
                     }
                     world.removeEntity(entity1);
                     world.removeEntity(entity2);
