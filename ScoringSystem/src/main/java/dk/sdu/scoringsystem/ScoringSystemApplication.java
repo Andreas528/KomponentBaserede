@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ScoringSystemApplication {
 
-    private Long totalScore = 0L;
 
     public static void main(String[] args) {
         SpringApplication.run(ScoringSystemApplication.class, args);
     }
 
     @GetMapping("/score")
-    public Long score(@RequestParam Long score) {
-        totalScore += score;
-        return totalScore;
+    public int score(@RequestParam int score) {
+        GameData gameData = new GameData();
+        gameData.addScore(score);
+        return score;
     }
 }
