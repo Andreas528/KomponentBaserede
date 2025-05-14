@@ -22,7 +22,6 @@
         <module>CommonBullet</module>
         <module>CommonEnemy</module>
         <module>Enemy</module>
-        <module>Score</module>
     </modules>
 
     <dependencyManagement>

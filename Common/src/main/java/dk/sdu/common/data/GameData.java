@@ -14,6 +14,10 @@ public class GameData {
         score++;
     }
 
+    public void addScore (int score) {
+        this.score += score;
+    }
+
 
     public synchronized GameInputs getInputs() {
         return inputs;

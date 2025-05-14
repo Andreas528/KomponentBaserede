@@ -7,9 +7,7 @@ import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.common.service.IPostEntity;
 import dk.sdu.common.input.IInput;
-import dk.sdu.common.service.ScoreSPI;
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -30,16 +28,14 @@ public class Game {
     private final List<IPostEntity> postEntities;
     private final List<IEntityProcessor> entityProcessors;
     private final List<IInput> inputs;
-    private final List<ScoreSPI> scoreSPI;
 
 
 
-    Game(List<IGamePlugin> gamePlugins, List<IPostEntity> postEntities, List<IEntityProcessor> entityProcessors, List<IInput> inputs, List<ScoreSPI> scoreSPI) {
+    Game(List<IGamePlugin> gamePlugins, List<IPostEntity> postEntities, List<IEntityProcessor> entityProcessors, List<IInput> inputs) {
         this.gamePlugins = gamePlugins;
         this.postEntities = postEntities;
         this.entityProcessors = entityProcessors;
         this.inputs = inputs;
-        this.scoreSPI = scoreSPI;
     }
 
 
@@ -47,9 +43,6 @@ public class Game {
         // Scene and Score Text
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
         scene.setFill(Color.BLACK);
-        if (!scoreSPI.isEmpty()) {
-            gameWindow.getChildren().add(scoreSPI.getFirst().getScoreText());
-        }
 
         // Input
         for (IInput input : inputs) {
@@ -84,9 +77,6 @@ public class Game {
         }
         for (IPostEntity post : postEntities) {
             post.process(gameData, world);
-        }
-        if (!scoreSPI.isEmpty()) {
-            scoreSPI.getFirst().update(gameData);
         }
     }
 
