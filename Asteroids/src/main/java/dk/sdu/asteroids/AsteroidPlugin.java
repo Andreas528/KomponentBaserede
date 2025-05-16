@@ -3,24 +3,24 @@ package dk.sdu.asteroids;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
 import dk.sdu.common.data.GameData;
+import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.commonasteroids.Asteroid;
 
 
 import java.util.Random;
 
-public class AsteroidPlugin implements IGamePlugin {
+public class AsteroidPlugin implements IGamePlugin, IEntityProcessor {
     private final Random rnd = new Random();
+    private final int MIN_ASTEROIDS = 20;
 
     @Override
     public void start(GameData gameData, World world) {
-        // Spawn asteroid entity
-        Entity asteroid = createAsteroid(gameData);
-        world.addEntity(asteroid);
-
-        for (int i = 0; i < 25; i++) {
+        // Spawns 20 asteroid and adds one everytime you kill one
+        for (int i = 0; i < MIN_ASTEROIDS; i++) {
             world.addEntity(createAsteroid(gameData));
         }
+
     }
 
     @Override
@@ -28,6 +28,14 @@ public class AsteroidPlugin implements IGamePlugin {
         // Remove asteroid entity
         for (Entity asteroid : world.getEntities(Asteroid.class)) {
             world.removeEntity(asteroid);
+        }
+    }
+
+    @Override
+    public void process(GameData gameData, World world) {
+        int currentCount = world.getEntities(Asteroid.class).size();
+        if (currentCount < MIN_ASTEROIDS) {
+            world.addEntity(createAsteroid(gameData));
         }
     }
 
@@ -56,4 +64,6 @@ public class AsteroidPlugin implements IGamePlugin {
 
         return asteroid;
     }
+
+
 }
