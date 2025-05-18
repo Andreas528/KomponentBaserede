@@ -23,6 +23,7 @@
         <module>CommonEnemy</module>
         <module>Enemy</module>
         <module>Score</module>
+        <module>Enemy2</module>
     </modules>
 
     <dependencyManagement>
@@ -113,6 +114,9 @@
                                 <fileset>
                                     <directory>libs</directory>
                                 </fileset>
+                                <fileset>
+                                    <directory>split-packages</directory>
+                                </fileset>
                             </filesets>
                         </configuration>
                     </plugin>
@@ -125,6 +129,7 @@
             <activation>
                 <file>
                     <exists>src</exists>
+                    <missing>split</missing>
                 </file>
             </activation>
             <build>
@@ -161,6 +166,44 @@
                                 </goals>
                                 <configuration>
                                     <outputDirectory>../mods-mvn</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>child-project-two</id>
+            <activation>
+                <file>
+                    <exists>split</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <!-- Copy the module artifact -->
+                            <execution>
+                                <id>copy-installed</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>${project.groupId}</groupId>
+                                            <artifactId>${project.artifactId}</artifactId>
+                                            <version>${project.version}</version>
+                                            <type>jar</type>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>../split-packages</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>

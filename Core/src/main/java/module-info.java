@@ -3,10 +3,10 @@ import dk.sdu.common.input.IInput;
 import dk.sdu.common.service.ScoreSPI;
 
 module Core {
-    requires javafx.controls;
     requires Common;
     requires CommonInput;
     requires CommonBullet;
+    requires javafx.graphics;
 
     uses dk.sdu.common.service.IGamePlugin;
     uses dk.sdu.common.service.IPostEntity;

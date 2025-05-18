@@ -108,7 +108,6 @@ public class Main extends Application {
             for (ScoreSPI score : scoreServices) {
                 score.update(gameData);
             }
-
         }
     }
 }
