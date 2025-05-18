@@ -52,6 +52,8 @@ public class AsteroidPlugin implements IGamePlugin, IEntityProcessor {
         asteroid.setY(rnd.nextInt(gameData.getDisplayHeight()));
         asteroid.setRadius(size);
         asteroid.setRotation(rnd.nextInt(360));
+        asteroid.setAlive(true);
+        asteroid.setHealth(6);
 
         // Generate random RGB color - RAINBOW ASTEROIDS :>
         // int r = rnd.nextInt(256);

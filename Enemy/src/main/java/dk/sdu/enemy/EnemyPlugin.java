@@ -34,7 +34,8 @@ public class EnemyPlugin implements IGamePlugin {
         enemy.setY(gameData.getDisplayWidth()/3);
         enemy.setRadius(5);
         enemy.setRotation(rnd.nextInt(90));
-
+        enemy.setHealth(6);
+        enemy.setAlive(true);
         enemy.setColor(255,0,0);
 
         return enemy;

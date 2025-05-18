@@ -22,6 +22,8 @@ public class BulletProcessor implements IEntityProcessor, BulletSPI {
         bullet.setRotation(firing.getRotation());
         bullet.setRadius(1);
         bullet.setColor(255, 0, 0);
+        bullet.setHealth(1);
+        bullet.setAlive(true);
         return bullet;
     }
 

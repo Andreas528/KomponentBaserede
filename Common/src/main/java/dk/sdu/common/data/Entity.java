@@ -13,6 +13,24 @@ public class Entity implements Serializable {
     private double rotation;
     private float radius;
     private int[] color = new int[3]; // Stores R, G, B separately
+    private int health;
+    private boolean isAlive;
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public boolean getAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 
     public String getID() {
         return ID.toString();

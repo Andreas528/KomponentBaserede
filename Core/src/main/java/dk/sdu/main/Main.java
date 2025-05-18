@@ -78,6 +78,13 @@ public class Main extends Application {
         for (IEntityProcessor proc : ModuleConfig.getIEntityServices()) {
             proc.process(gameData, world);
         }
+
+        for (Entity entity : world.getEntities()) {
+            if (!entity.getAlive()) {
+                world.removeEntity(entity);
+            }
+        }
+
         for (IPostEntity post : ModuleConfig.getPostServices()) {
             post.process(gameData, world);
         }
