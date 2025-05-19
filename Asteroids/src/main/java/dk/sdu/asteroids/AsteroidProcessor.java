@@ -6,7 +6,11 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
 import dk.sdu.commonasteroids.Asteroid;
 
+import java.util.Random;
+
 public class AsteroidProcessor implements IEntityProcessor {
+    private final int MIN_ASTEROIDS = 20;
+    private final Random rnd = new Random();
 
     @Override
     public void process(GameData gameData, World world) {
@@ -22,6 +26,15 @@ public class AsteroidProcessor implements IEntityProcessor {
             if (asteroid.getX() > gameData.getDisplayWidth()) asteroid.setX(0);
             if (asteroid.getY() < 0) asteroid.setY(gameData.getDisplayHeight());
             if (asteroid.getY() > gameData.getDisplayHeight()) asteroid.setY(0);
+
+            int currentCount = world.getEntities(Asteroid.class).size();
+            if (currentCount < MIN_ASTEROIDS) {
+                AsteroidPlugin asteroidPlugin = new AsteroidPlugin();
+
+                double x = rnd.nextInt(gameData.getDisplayWidth());
+                double y = rnd.nextInt(gameData.getDisplayHeight());
+                world.addEntity(asteroidPlugin.createAsteroid(gameData, false, x, y));
+            }
         }
     }
 }
