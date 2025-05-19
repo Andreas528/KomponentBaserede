@@ -20,11 +20,9 @@ public class ScoreClient implements IScore {
                     String.class
             );
 
-            System.out.println("Sending score: " + value);
 
             // Parse and log the updated score returned by the server.
-            int score = Integer.parseInt(response);
-            System.out.println("Score now: " + score);
+            System.out.println("Score now: " + Integer.parseInt(response));
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("FAILED" + e.getMessage());

@@ -19,11 +19,7 @@ public class ScoreController {
     // Increases the score by 1 if a Collision has happened between an asteroid and a bullet,
     // then returns the updated score as plain text.
     @GetMapping("/score")
-    public ResponseEntity<String> score(@RequestParam(name = "score", required = true) Integer score) {
-        if (score == null) {
-            return ResponseEntity.badRequest().body("Missing 'score' parameter");
-        }
-
+    public ResponseEntity<String> score(@RequestParam(name = "score") Integer score) {
         int newScore = scoreService.addScore(score);
         return ResponseEntity.ok(String.valueOf(newScore));
     }
@@ -31,10 +27,5 @@ public class ScoreController {
     @GetMapping(value = "/score/current", produces = "text/plain")
     public String currentScore() {
         return String.valueOf(scoreService.getScore());
-    }
-
-    @PostMapping("/score/reset")
-    public void resetScore() {
-        scoreService.resetScore();
     }
 }

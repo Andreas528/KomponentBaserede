@@ -15,8 +15,4 @@ public class ScoreService {
     public int getScore() {
         return totalScore;
     }
-
-    public void resetScore() {
-        totalScore = 0;
-    }
 }
