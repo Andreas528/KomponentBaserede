@@ -1,8 +1,9 @@
 package dk.sdu.scoreclient;
 
+import dk.sdu.common.service.IScore;
 import org.springframework.web.client.RestTemplate;
 
-public class ScoreClient {
+public class ScoreClient implements IScore {
 
     private final RestTemplate restTemplate;
 

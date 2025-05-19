@@ -1,4 +1,5 @@
 module ScoreClient{
     requires spring.web;
-    exports dk.sdu.scoreclient;
+    requires Common;
+    provides dk.sdu.common.service.IScore with dk.sdu.scoreclient.ScoreClient;
 }
