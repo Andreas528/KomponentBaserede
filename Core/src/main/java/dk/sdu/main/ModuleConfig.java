@@ -20,7 +20,7 @@ public class ModuleConfig {
 
     @Bean
     public Game game() {
-        return new Game(gamePlugins(), postEntities(), entityProcessors(), inputs(), scoreSPI());
+        return new Game();
     }
 
     @Bean

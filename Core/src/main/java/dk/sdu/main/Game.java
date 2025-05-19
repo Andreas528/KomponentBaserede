@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,22 +27,17 @@ public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
-    private final List<IGamePlugin> gamePlugins;
-    private final List<IPostEntity> postEntities;
-    private final List<IEntityProcessor> entityProcessors;
-    private final List<IInput> inputs;
-    private final List<ScoreSPI> scoreSPI;
 
-
-
-    Game(List<IGamePlugin> gamePlugins, List<IPostEntity> postEntities, List<IEntityProcessor> entityProcessors, List<IInput> inputs, List<ScoreSPI> scoreSPI) {
-        this.gamePlugins = gamePlugins;
-        this.postEntities = postEntities;
-        this.entityProcessors = entityProcessors;
-        this.inputs = inputs;
-        this.scoreSPI = scoreSPI;
-    }
-
+    @Autowired
+    private List<IGamePlugin> gamePlugins;
+    @Autowired
+    private List<IPostEntity> postEntities;
+    @Autowired
+    private List<IEntityProcessor> entityProcessors;
+    @Autowired
+    private List<IInput> inputs;
+    @Autowired
+    private List<ScoreSPI> scoreSPI;
 
     public void start(Stage primaryStage) throws Exception {
         // Scene and Score Text
