@@ -4,6 +4,7 @@ public class GameData {
     private int displayWidth  = 800 ;
     private int displayHeight = 800;
     private final GameInputs inputs = new GameInputs();
+    private int score = 0;
 
     public synchronized GameInputs getInputs() {
         return inputs;
@@ -26,4 +27,11 @@ public class GameData {
     }
 
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

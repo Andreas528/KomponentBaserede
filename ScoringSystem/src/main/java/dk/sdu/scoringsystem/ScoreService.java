@@ -8,7 +8,7 @@ public class ScoreService {
     private int totalScore = 0;
 
     public synchronized int addScore(int score) {
-        totalScore += score;
+        totalScore = score;
         return totalScore;
     }
 

@@ -35,7 +35,8 @@ public class CollisionChecker implements IPostEntity {
                 // CollisionDetection with Spring MicroService.
                 if (this.collides(entity1, entity2)) {
                     if (entity1 instanceof Asteroid || entity2 instanceof Asteroid) {
-                        scoreService.ifPresent(s -> s.addScore(1));
+                        gameData.setScore(gameData.getScore() + 1);
+                        scoreService.ifPresent(s -> s.addScore(gameData.getScore()));
                     }
                     world.removeEntity(entity1);
                     world.removeEntity(entity2);

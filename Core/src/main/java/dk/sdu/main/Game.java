@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,7 +30,7 @@ public class Game {
     private final List<IPostEntity> postEntities;
     private final List<IEntityProcessor> entityProcessors;
     private final List<IInput> inputs;
-
+    private final Text asteroidDestroyedText = new Text("Asteroids Destroyed: ");
 
 
     Game(List<IGamePlugin> gamePlugins, List<IPostEntity> postEntities, List<IEntityProcessor> entityProcessors, List<IInput> inputs) {
@@ -43,6 +45,12 @@ public class Game {
         // Scene and Score Text
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
         scene.setFill(Color.BLACK);
+
+        asteroidDestroyedText.setFill(Color.WHITE);
+        asteroidDestroyedText.setFont(new Font(15));
+        asteroidDestroyedText.setX(10);
+        asteroidDestroyedText.setY(25);
+        gameWindow.getChildren().add(asteroidDestroyedText);
 
         // Input
         for (IInput input : inputs) {
@@ -101,7 +109,7 @@ public class Game {
             polygon.setTranslateX(entity.getX());
             polygon.setTranslateY(entity.getY());
             polygon.setRotate(entity.getRotation());
-
+            asteroidDestroyedText.setText("Asteroids Destroyed: " + gameData.getScore());
         }
     }
 }
