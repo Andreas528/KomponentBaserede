@@ -5,6 +5,10 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.input.InputEvent;
 
+/**
+ * Interface for handling input events in the game.
+ */
+
 public interface IInput {
     EventType<? extends InputEvent> getInputEvent();
 

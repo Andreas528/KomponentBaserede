@@ -5,12 +5,8 @@ import dk.sdu.common.data.World;
 public interface IEntityProcessor {
 
     /**
-     *
-     *
-     *
-     * @param gameData
-     * @param world
-     * @throws
+     * Interface for processing game entities each frame.
      */
+
     void process(GameData gameData, World world);
 }
