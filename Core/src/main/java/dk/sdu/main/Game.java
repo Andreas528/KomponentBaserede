@@ -27,25 +27,29 @@ public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
+    private final List<IGamePlugin> gamePlugins;
+    private final List<IEntityProcessor> entityProcessors;
+    private final List<IPostEntity> postEntities;
+    private final List<IInput> inputs;
 
-    @Autowired
-    private List<IGamePlugin> gamePlugins;
-    @Autowired
-    private List<IPostEntity> postEntities;
-    @Autowired
-    private List<IEntityProcessor> entityProcessors;
-    @Autowired
-    private List<IInput> inputs;
-    @Autowired
+    @Autowired(required = false)
     private List<ScoreSPI> scoreSPI;
+
+    public Game(List<IGamePlugin> gamePlugins, List<IEntityProcessor> entityProcessors, List<IPostEntity> postEntities, List<IInput> inputs) {
+        this.gamePlugins = gamePlugins;
+        this.entityProcessors = entityProcessors;
+        this.postEntities = postEntities;
+        this.inputs = inputs;
+    }
 
     public void start(Stage primaryStage) throws Exception {
         // Scene and Score Text
         Scene scene = new Scene(gameWindow, gameData.getDisplayWidth(), gameData.getDisplayHeight());
         scene.setFill(Color.BLACK);
-        if (!scoreSPI.isEmpty()) {
+        if (scoreSPI != null && !scoreSPI.isEmpty()) {
             gameWindow.getChildren().add(scoreSPI.getFirst().getScoreText());
         }
+
 
         // Input
         for (IInput input : inputs) {
@@ -81,9 +85,10 @@ public class Game {
         for (IPostEntity post : postEntities) {
             post.process(gameData, world);
         }
-        if (!scoreSPI.isEmpty()) {
+        if (scoreSPI != null && !scoreSPI.isEmpty()) {
             scoreSPI.getFirst().update(gameData);
         }
+
     }
 
     // Draws entities
