@@ -13,7 +13,7 @@ public class ScoreClient implements IScore {
 
     // Sends a score increment to the scoring server, and logs the updated score.
     public void addScore(int value) {
-        try {
+        {
             // Sends the request.
             String response = restTemplate.getForObject(
                     "http://localhost:8080/score?score=" + value,
@@ -23,9 +23,6 @@ public class ScoreClient implements IScore {
 
             // Parse and log the updated score returned by the server.
             System.out.println("Score now: " + Integer.parseInt(response));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("FAILED" + e.getMessage());
         }
     }
 }

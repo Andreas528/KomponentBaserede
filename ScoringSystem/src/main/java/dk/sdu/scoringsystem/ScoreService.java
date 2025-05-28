@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class ScoreService {
     private int totalScore = 0;
 
-    public synchronized int addScore(int score) {
+    public int addScore(int score) {
         totalScore = score;
         return totalScore;
     }
