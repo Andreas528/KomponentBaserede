@@ -24,12 +24,6 @@
         </dependency>
         <dependency>
             <groupId>dk.sdu</groupId>
-            <artifactId>CommonInput</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu</groupId>
             <artifactId>CommonBullet</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>

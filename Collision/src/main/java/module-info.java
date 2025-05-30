@@ -1,8 +1,8 @@
-import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.service.IPostEntityProcessing;
 
 module Collision {
     requires Common;
     requires CommonAsteroids;
     requires CommonPlayer;
-    provides IPostEntity with dk.sdu.collision.CollisionChecker;
+    provides IPostEntityProcessing with dk.sdu.collision.CollisionChecker;
 }

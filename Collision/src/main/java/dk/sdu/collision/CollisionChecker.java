@@ -4,11 +4,11 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.commonasteroids.Asteroid;
-import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.service.IPostEntityProcessing;
 
 
 
-public class CollisionChecker implements IPostEntity {
+public class CollisionChecker implements IPostEntityProcessing {
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity1 : world.getEntities()) {

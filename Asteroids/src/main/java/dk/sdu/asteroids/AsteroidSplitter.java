@@ -3,10 +3,10 @@ package dk.sdu.asteroids;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.service.IPostEntityProcessing;
 import dk.sdu.commonasteroids.Asteroid;
 
-public class AsteroidSplitter implements IPostEntity {
+public class AsteroidSplitter implements IPostEntityProcessing {
     private final AsteroidPlugin asteroidPlugin = new AsteroidPlugin();
 
     @Override

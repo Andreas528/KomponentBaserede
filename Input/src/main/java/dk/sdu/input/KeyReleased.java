@@ -1,6 +1,6 @@
 package dk.sdu.input;
 
-import dk.sdu.common.input.IInput;
+import dk.sdu.common.service.IInputSPI;
 import dk.sdu.common.data.GameData;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyEvent;
@@ -8,7 +8,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import dk.sdu.common.data.EGameInputs;
 
-public class KeyReleased implements IInput {
+public class KeyReleased implements IInputSPI {
     @Override
     public EventType<? extends InputEvent> getInputEvent() {
         return KeyEvent.KEY_RELEASED;

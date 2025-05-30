@@ -6,7 +6,7 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
 import dk.sdu.common.service.IPostEntityProcessing;
-import dk.sdu.common.input.IInput;
+import dk.sdu.common.service.IInputSPI;
 import dk.sdu.common.service.IScoreSPI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -47,7 +47,7 @@ public class Main extends Application {
         }
 
         // Input
-        for (IInput input : ModuleConfig.getIInputServices()) {
+        for (IInputSPI input : ModuleConfig.getIInputServices()) {
             scene.addEventHandler(input.getInputEvent(), input.getInputHandler(gameData));
         }
 

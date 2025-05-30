@@ -15,7 +15,6 @@
         <module>CommonAsteroids</module>
         <module>CommonPlayer</module>
         <module>Player</module>
-        <module>CommonInput</module>
         <module>Input</module>
         <module>Collision</module>
         <module>Bullet</module>

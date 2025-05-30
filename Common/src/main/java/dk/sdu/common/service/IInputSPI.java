@@ -1,4 +1,4 @@
-package dk.sdu.common.input;
+package dk.sdu.common.service;
 
 import dk.sdu.common.data.GameData;
 import javafx.event.EventHandler;
@@ -9,7 +9,7 @@ import javafx.scene.input.InputEvent;
  * Interface for handling input events in the game.
  */
 
-public interface IInput {
+public interface IInputSPI {
     EventType<? extends InputEvent> getInputEvent();
 
     EventHandler<InputEvent> getInputHandler(GameData gameData);

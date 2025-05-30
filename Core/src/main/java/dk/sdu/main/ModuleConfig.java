@@ -1,6 +1,6 @@
 package dk.sdu.main;
 
-import dk.sdu.common.input.IInput;
+import dk.sdu.common.service.IInputSPI;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IPostEntityProcessing;
 import dk.sdu.common.service.IGamePlugin;
@@ -24,8 +24,8 @@ public class ModuleConfig {
         return ServiceLoader.load(IPostEntityProcessing.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
-    public static Collection<IInput> getIInputServices() {
-        return ServiceLoader.load(IInput.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public static Collection<IInputSPI> getIInputServices() {
+        return ServiceLoader.load(IInputSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
     public static Collection<IScoreSPI> getScoreServices() {

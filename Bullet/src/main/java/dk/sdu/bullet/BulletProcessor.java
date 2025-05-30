@@ -1,14 +1,14 @@
 package dk.sdu.bullet;
 
 import dk.sdu.common.bullet.Bullet;
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.bullet.IBulletSPI;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
 
 
-public class BulletProcessor implements IEntityProcessor, BulletSPI {
+public class BulletProcessor implements IEntityProcessor, IBulletSPI {
 
     @Override
     public Entity createBullet(Entity firing, GameData gameData) {
