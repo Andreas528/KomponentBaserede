@@ -6,6 +6,6 @@ import dk.sdu.common.data.GameData;
  * Interface for creating bullet entities in the game.
  */
 
-public interface BulletSPI {
+public interface IBulletSPI {
     Entity createBullet(Entity e, GameData gameData);
 }

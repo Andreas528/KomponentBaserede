@@ -1,6 +1,7 @@
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.bullet.IBulletSPI;
 import dk.sdu.common.input.IInput;
-import dk.sdu.common.service.ScoreSPI;
+import dk.sdu.common.service.IPostEntityProcessing;
+import dk.sdu.common.service.IScoreSPI;
 
 module Core {
     requires javafx.controls;
@@ -9,11 +10,11 @@ module Core {
     requires CommonBullet;
 
     uses dk.sdu.common.service.IGamePlugin;
-    uses dk.sdu.common.service.IPostEntity;
+    uses IPostEntityProcessing;
     uses dk.sdu.common.service.IEntityProcessor;
     uses IInput;
-    uses BulletSPI;
-    uses ScoreSPI;
+    uses IBulletSPI;
+    uses IScoreSPI;
 
     exports dk.sdu.main;
 }

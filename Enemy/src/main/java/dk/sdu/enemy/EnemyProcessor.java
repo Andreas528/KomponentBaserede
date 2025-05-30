@@ -5,7 +5,7 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.enemy.Enemy;
 import dk.sdu.common.service.IEntityProcessor;
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.bullet.IBulletSPI;
 
 import java.util.Collection;
 import java.util.ServiceLoader;
@@ -45,8 +45,8 @@ public class EnemyProcessor implements IEntityProcessor {
         }
     }
 
-    private Collection<? extends BulletSPI> getBulletSPIs() {
-        return ServiceLoader.load(dk.sdu.common.bullet.BulletSPI.class).stream()
+    private Collection<? extends IBulletSPI> getBulletSPIs() {
+        return ServiceLoader.load(IBulletSPI.class).stream()
                 .map(ServiceLoader.Provider::get)
                 .collect(Collectors.toList());
     }

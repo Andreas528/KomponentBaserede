@@ -4,10 +4,9 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
-import dk.sdu.common.data.GameData;
 import dk.sdu.common.player.Player;
 import dk.sdu.common.data.EGameInputs;
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.bullet.IBulletSPI;
 
 import java.util.Collection;
 import java.util.ServiceLoader;
@@ -64,8 +63,8 @@ public class PlayerControl implements IEntityProcessor {
             player.setY(Math.min(Math.max(player.getY(), 1), gameData.getDisplayHeight() - 1));
         }
     }
-    private Collection<? extends BulletSPI> getBulletSPIs() {
-        return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    private Collection<? extends IBulletSPI> getBulletSPIs() {
+        return ServiceLoader.load(IBulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
 }

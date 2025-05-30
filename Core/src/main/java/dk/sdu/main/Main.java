@@ -5,9 +5,9 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.service.IEntityProcessor;
 import dk.sdu.common.service.IGamePlugin;
-import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.service.IPostEntityProcessing;
 import dk.sdu.common.input.IInput;
-import dk.sdu.common.service.ScoreSPI;
+import dk.sdu.common.service.IScoreSPI;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -27,7 +27,7 @@ public class Main extends Application {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
-    private List<ScoreSPI> scoreServices;
+    private List<IScoreSPI> scoreServices;
 
 
 
@@ -42,7 +42,7 @@ public class Main extends Application {
         scene.setFill(Color.BLACK);
 
         scoreServices = new ArrayList<>(ModuleConfig.getScoreServices());
-        for (ScoreSPI score : scoreServices) {
+        for (IScoreSPI score : scoreServices) {
             gameWindow.getChildren().add(score.getScoreText());
         }
 
@@ -85,7 +85,7 @@ public class Main extends Application {
             }
         }
 
-        for (IPostEntity post : ModuleConfig.getPostServices()) {
+        for (IPostEntityProcessing post : ModuleConfig.getPostServices()) {
             post.process(gameData, world);
         }
     }
@@ -112,7 +112,7 @@ public class Main extends Application {
             polygon.setTranslateY(entity.getY());
             polygon.setRotate(entity.getRotation());
 
-            for (ScoreSPI score : scoreServices) {
+            for (IScoreSPI score : scoreServices) {
                 score.update(gameData);
             }
 

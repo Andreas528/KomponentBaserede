@@ -2,9 +2,9 @@ package dk.sdu.main;
 
 import dk.sdu.common.input.IInput;
 import dk.sdu.common.service.IEntityProcessor;
-import dk.sdu.common.service.IPostEntity;
+import dk.sdu.common.service.IPostEntityProcessing;
 import dk.sdu.common.service.IGamePlugin;
-import dk.sdu.common.service.ScoreSPI;
+import dk.sdu.common.service.IScoreSPI;
 
 
 import java.util.Collection;
@@ -20,16 +20,16 @@ public class ModuleConfig {
         return ServiceLoader.load(IEntityProcessor.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
-    public static Collection<IPostEntity> getPostServices() {
-        return ServiceLoader.load(IPostEntity.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public static Collection<IPostEntityProcessing> getPostServices() {
+        return ServiceLoader.load(IPostEntityProcessing.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
     public static Collection<IInput> getIInputServices() {
         return ServiceLoader.load(IInput.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
-    public static Collection<ScoreSPI> getScoreServices() {
-        return ServiceLoader.load(ScoreSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
+    public static Collection<IScoreSPI> getScoreServices() {
+        return ServiceLoader.load(IScoreSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 
 }

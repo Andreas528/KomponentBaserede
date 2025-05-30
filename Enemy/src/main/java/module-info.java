@@ -1,3 +1,4 @@
+import dk.sdu.common.bullet.IBulletSPI;
 import dk.sdu.common.service.*;
 
 module Enemy {
@@ -6,6 +7,6 @@ module Enemy {
     requires CommonEnemy;
     provides IGamePlugin with dk.sdu.enemy.EnemyPlugin;
     provides IEntityProcessor with dk.sdu.enemy.EnemyProcessor;
-    uses dk.sdu.common.bullet.BulletSPI;
+    uses IBulletSPI;
 
 }

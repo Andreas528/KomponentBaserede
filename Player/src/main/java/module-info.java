@@ -1,3 +1,4 @@
+import dk.sdu.common.bullet.IBulletSPI;
 import dk.sdu.common.service.*;
 
 module Player {
@@ -6,5 +7,5 @@ module Player {
     requires CommonBullet;
     provides IGamePlugin with dk.sdu.playersystem.PlayerPlugin;
     provides IEntityProcessor with dk.sdu.playersystem.PlayerControl;
-    uses dk.sdu.common.bullet.BulletSPI;
+    uses IBulletSPI;
 }

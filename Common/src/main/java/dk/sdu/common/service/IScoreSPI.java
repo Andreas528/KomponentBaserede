@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
  * Interface for managing and displaying the game score.
  */
 
-public interface ScoreSPI {
+public interface IScoreSPI {
     Text getScoreText();
     void update(GameData gameData);
 }

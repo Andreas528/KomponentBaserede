@@ -1,10 +1,10 @@
 package dk.sdu.score;
 
 import dk.sdu.common.data.GameData;
-import dk.sdu.common.service.ScoreSPI;
+import dk.sdu.common.service.IScoreSPI;
 import javafx.scene.text.Text;
 
-public class Score implements ScoreSPI {
+public class Score implements IScoreSPI {
 
     private final Text scoreText;
 
