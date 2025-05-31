@@ -11,6 +11,7 @@ public class ScoreClient implements IScoreSPI {
         this.restTemplate = new RestTemplate();
     }
 
+    // Sends a score increment to the scoring server, and logs the updated score.
     public void addScore(int value) {
         {
             // Sends the request.
@@ -19,7 +20,7 @@ public class ScoreClient implements IScoreSPI {
                     String.class
             );
 
-
+            // Parse and log the updated score returned by the server.
             System.out.println("Score now: " + Integer.parseInt(response));
         }
     }
