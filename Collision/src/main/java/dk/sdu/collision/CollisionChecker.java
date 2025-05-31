@@ -3,7 +3,7 @@ package dk.sdu.collision;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.common.service.IScore;
+import dk.sdu.common.service.IScoreSPI;
 import dk.sdu.commonasteroids.Asteroid;
 import dk.sdu.common.service.IPostEntity;
 
@@ -16,8 +16,8 @@ public class CollisionChecker implements IPostEntity {
     @Override
     public void process(GameData gameData, World world) {
 
-        ServiceLoader<IScore> loader = ServiceLoader.load(IScore.class);
-        Optional<IScore> scoreService = loader.findFirst();
+        ServiceLoader<IScoreSPI> loader = ServiceLoader.load(IScoreSPI.class);
+        Optional<IScoreSPI> scoreService = loader.findFirst();
 
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {

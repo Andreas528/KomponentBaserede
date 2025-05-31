@@ -1,5 +1,5 @@
 package dk.sdu.common.service;
 
-public interface IScore {
+public interface IScoreSPI {
     void addScore(int value);
 }

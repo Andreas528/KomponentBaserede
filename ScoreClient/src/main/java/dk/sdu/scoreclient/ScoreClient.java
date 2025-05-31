@@ -1,9 +1,9 @@
 package dk.sdu.scoreclient;
 
-import dk.sdu.common.service.IScore;
+import dk.sdu.common.service.IScoreSPI;
 import org.springframework.web.client.RestTemplate;
 
-public class ScoreClient implements IScore {
+public class ScoreClient implements IScoreSPI {
 
     private final RestTemplate restTemplate;
 
@@ -11,7 +11,6 @@ public class ScoreClient implements IScore {
         this.restTemplate = new RestTemplate();
     }
 
-    // Sends a score increment to the scoring server, and logs the updated score.
     public void addScore(int value) {
         {
             // Sends the request.
@@ -21,7 +20,6 @@ public class ScoreClient implements IScore {
             );
 
 
-            // Parse and log the updated score returned by the server.
             System.out.println("Score now: " + Integer.parseInt(response));
         }
     }
